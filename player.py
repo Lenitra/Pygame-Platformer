@@ -33,7 +33,7 @@ class Player():
                 if not self.jump:
                     self.saut()
 
-        else:
+        if not self.pressed.__contains__(100) and not self.pressed.__contains__(113) :
             if self.speedx > 1:
                 self.speedx -= self.vec
             elif self.speedx < 1:
@@ -54,8 +54,12 @@ class Player():
         return True
 
     def grav(self, collides):
+
         for box in collides:
             if pygame.Rect(self.hitbox[0]*scale, (self.hitbox[1]+self.speedy)*scale, 32*scale, 32*scale).colliderect(box):
+                if self.speedy < 0:
+                    self.speedy = 0
+                    break
                 if self.speedy > 0:
                     self.jump = False
                 return
