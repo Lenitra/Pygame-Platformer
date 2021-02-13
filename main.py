@@ -4,6 +4,7 @@ from jeu import Jeu
 from player import Player
 from map import Map
 
+
 if __name__ == '__main__':
     clock = pygame.time.Clock()
     jeu = Jeu()
@@ -14,11 +15,15 @@ if __name__ == '__main__':
 
         if jeu.inter == "menu principal":
             jeu.affichage()
-        if jeu.inter == ("jeu"):
-            jeu.affichage(player, map)
+        if jeu.inter == "jeu":
 
-        clock.tick(60)
-        player.move()
+            jeu.affichage(player, map)
+            player.grav(map.collides)
+            player.move(map.collides)
+
+        clock.tick(120)
+
+
         pygame.display.flip()
 
         # endregion
@@ -32,9 +37,8 @@ if __name__ == '__main__':
             # endregion
 
             # Event feseable dans n'importe quel niveau
-            if jeu.inter == ("jeu"):
+            if jeu.inter == "jeu":
                 if event.type == pygame.KEYDOWN:
-
                     player.plustouch(event.key)
                 if event.type == pygame.KEYUP:
                     player.mointouch(event.key)
@@ -47,4 +51,3 @@ if __name__ == '__main__':
                         map.lvl = 1
                         map.listet()
                         map.build(jeu)
-
