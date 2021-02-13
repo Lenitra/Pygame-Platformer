@@ -54,19 +54,20 @@ class Player():
         return True
 
     def grav(self, collides):
-
         for box in collides:
             if pygame.Rect(self.hitbox[0]*scale, (self.hitbox[1]+self.speedy)*scale, 32*scale, 32*scale).colliderect(box):
                 if self.speedy < 0:
                     self.speedy = 0
                     break
                 if self.speedy > 0:
+                    while self.hitbox[1] % 16 != 0:
+                        self.hitbox[1]+=1
                     self.jump = False
+
                 return
 
         self.speedy += self.gravity
         self.hitbox[1] += self.speedy
-
 
     def saut(self):
         self.jump = True
