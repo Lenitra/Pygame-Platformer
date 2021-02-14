@@ -4,7 +4,8 @@ from options import scale
 class Player():
     def __init__(self):
         self.gravity = 0.1
-
+        self.sp = 1
+        self.orien = 1
         self.hitbox = pygame.Rect(32, 100, 32*scale, 32*scale)
         self.pressed = []
         self.speed_max = 2.5
@@ -20,31 +21,44 @@ class Player():
         self.pressed.remove(key)
 
     def move(self, collides):
+
+
+
+
+
         if self.pressed != []:
             if self.pressed.__contains__(100):
-                if self.speedx <= self.speed_max:
+                self.sp += 1
+                if self.speedx < self.speed_max:
+
                     self.speedx += self.vec
 
+
             if self.pressed.__contains__(113):
-                if self.speedx > -self.speed_max:
+                self.sp += 1
+                if self.speedx > -self.speed_max+1:
                     self.speedx -= self.vec
+
 
             if self.pressed.__contains__(32):
                 if not self.jump:
                     self.saut()
 
         if not self.pressed.__contains__(100) and not self.pressed.__contains__(113) :
+
             if self.speedx > 1:
                 self.speedx -= self.vec
             elif self.speedx < 1:
                 self.speedx += self.vec
-            if -1 <= self.speedx <= 1:
+            if -0.5 <= self.speedx <= 1:
+                self.sp = 0
                 self.speedx = 0
 
         if self.mouvx(collides):
             self.hitbox[0] += self.speedx
 
-
+        if self.sp >= 7:
+            self.sp = 1
 
     def mouvx(self, collides):
         for box in collides:
