@@ -63,7 +63,7 @@ Quant au gameplay, on se trouve sur un plateformer classique, déplacements lat�
 <p>PixArt sera totalement en pixel art, d’une taille assez basse. Le personnage sera plutôt petit par rapport à la taille de l'écran. Graphiquement, le jeu s’inspire de céleste et de dead cells d’un point de vue pixel art. Il s’inspire aussi des Ghiblis comme le château dans le ciel, le château ambulant … et de mortal engines pour l’aspect ville mouvante. Le côté steampunk est essentiel, avec des décors chargés de rouages et de mécanismes divers.</p>
 
 
-<img src="https://lh4.googleusercontent.com/jTFhjj29eLxXTILHEM3n6LtpxWVaxJdZjaJSGQ6nXYjn_Q6eddes6_fJTM0-KI3ghqZ5OCLaJkp7pEHCeOh7AQojOjRpfFnSHEVZ_bng-" alt="drawing" width="200"/>
+<img src="https://lh4.googleusercontent.com/jTFhjj29eLxXTILHEM3n6LtpxWVaxJdZjaJSGQ6nXYjn_Q6eddes6_fJTM0-KI3ghqZ5OCLaJkp7pEHCeOh7AQojOjRpfFnSHEVZ_bng" alt="drawing" width="200"/>
 
 <img src="https://lh3.googleusercontent.com/kBwNz4C_B853B8zsc4j-9_u1iQ4JWlYAtpZ7mxyut-kmq1wAL3-KskQDZtp_MK1GxnlHs_HGRdNoMkodB6S_Wos9ipT0fDYalKKVPRXT" alt="drawing" width="200"/>
 
