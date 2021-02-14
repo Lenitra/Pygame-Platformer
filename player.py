@@ -6,6 +6,7 @@ class Player():
         self.gravity = 0.1
         self.sp = 1
         self.orien = 1
+        self.moveloop = 0
         self.hitbox = pygame.Rect(32, 100, 32*scale, 32*scale)
         self.pressed = []
         self.speed_max = 2.5
@@ -28,17 +29,13 @@ class Player():
 
         if self.pressed != []:
             if self.pressed.__contains__(100):
-                self.sp += 1
+                self.moveloop += 1
                 if self.speedx < self.speed_max:
-
                     self.speedx += self.vec
-
-
             if self.pressed.__contains__(113):
-                self.sp += 1
+                self.moveloop += 1
                 if self.speedx > -self.speed_max+1:
                     self.speedx -= self.vec
-
 
             if self.pressed.__contains__(32):
                 if not self.jump:
@@ -56,6 +53,16 @@ class Player():
 
         if self.mouvx(collides):
             self.hitbox[0] += self.speedx
+
+    # Gestion des variables pour l'annimation
+        if self.moveloop >= 15:
+            self.moveloop = 0
+            self.sp +=1
+
+        if self.speedx > 0:
+            self.orien = 1
+        elif self.speedx < 0:
+            self.orien = 0
 
         if self.sp >= 7:
             self.sp = 1
@@ -79,7 +86,7 @@ class Player():
                     self.jump = False
 
                 return
-
+        self.jump = True
         self.speedy += self.gravity
         self.hitbox[1] += self.speedy
 
