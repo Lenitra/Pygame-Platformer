@@ -41,6 +41,13 @@ class Player():
                 if not self.jump:
                     self.saut()
 
+            # Speed la descente avec un appuis sur "s"
+            # if self.pressed.__contains__(115):
+            #     self.gravity = 0.25
+            # else:
+            #     self.gravity = 0.1
+
+
         if not self.pressed.__contains__(100) and not self.pressed.__contains__(113) :
 
             if self.speedx > 1:
