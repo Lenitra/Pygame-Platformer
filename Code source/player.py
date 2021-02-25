@@ -7,7 +7,7 @@ class Player():
         self.sp = 1
         self.orien = 1
         self.moveloop = 0
-        self.hitbox = pygame.Rect(32, 100, 32*scale, 32*scale)
+        self.hitbox = pygame.Rect(32, 100, 32, 32)
         self.pressed = []
         self.speed_max = 2.5
         self.speedx = 0
@@ -23,17 +23,16 @@ class Player():
 
     def move(self, collides):
 
-
-
-
-
         if self.pressed != []:
+
             if self.pressed.__contains__(100):
                 self.moveloop += 1
                 if self.speedx < self.speed_max:
                     self.speedx += self.vec
+
             if self.pressed.__contains__(113):
-                self.moveloop += 1
+                if not self.pressed.__contains__(100):
+                    self.moveloop += 1
                 if self.speedx > -self.speed_max+1:
                     self.speedx -= self.vec
 
@@ -73,17 +72,18 @@ class Player():
 
         if self.sp >= 7:
             self.sp = 1
-
+    # Check les mouvs latéraux
     def mouvx(self, collides):
         for box in collides:
-            if pygame.Rect((self.hitbox[0] + self.speedx)*scale, self.hitbox[1]*scale, 32*scale, 32*scale).colliderect(box):
+            if pygame.Rect((self.hitbox[0] + self.speedx), self.hitbox[1], self.hitbox[2], self.hitbox[3]).colliderect(box):
                 self.speedx = 0
                 return False
         return True
 
+    # Check les collisions et Applique la gravité
     def grav(self, collides):
         for box in collides:
-            if pygame.Rect(self.hitbox[0]*scale, (self.hitbox[1]+self.speedy)*scale, 32*scale, 32*scale).colliderect(box):
+            if pygame.Rect(self.hitbox[0], (self.hitbox[1]+self.speedy), self.hitbox[2], self.hitbox[3]).colliderect(box):
                 if self.speedy < 0:
                     self.speedy = 0
                     break
