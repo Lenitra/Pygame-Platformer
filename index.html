@@ -1,20 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PixArt</title>
-    <meta charset="UTF-8" />
-    <!-- <script src="data.js"></script> -->
-
+  <title>PixArt</title>
+  <meta charset="UTF-8" />
 </head>
+<canvas id="canvas"></canvas>
+<script type="text/javascript" src="js/datamaps.js"></script>
+<script type="text/javascript" src="js/player.js"></script>
+<script type="text/javascript" src="js/controller.js"></script>
+<script type="text/javascript" src="js/maps.js"></script>
+<script>
+
+
+    // The friction and gravity to show realistic movements
+    var gravity = 0.6;
+    var friction = 0.2;
+    // The number of platforms
+    var num = 2;
+    // The platforms
+    var platforms = [];
+    // Function to render the canvas
+    function rendercanvas(){
+        ctx.fillStyle = "#F0F8FF";
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    }
+
+
+    function loop() {
+        // If the player is not jumping apply the effect of frictiom
+        if(player.jump == false) {
+            player.x_v *= friction;
+        } else {
+            // If the player is in the air then apply the effect of gravity
+            player.y_v += gravity;
+        }
+        player.jump = true;
+        // If the left key is pressed increase the relevant horizontal velocity
+        if(keys.left) {
+            player.x_v = -2.5;
+        }
+        if(keys.right) {
+            player.x_v = 2.5;
+        }
+        // Updating the y and x coordinates of the player
+        player.y += player.y_v;
+        player.x += player.x_v;
+        // A simple code that checks for collions with the platform
+        let i = -1;
+        if(platforms[0].x < player.x && player.x < platforms[0].x + platforms[0].width &&
+        platforms[0].y < player.y && player.y < platforms[0].y + platforms[0].height){
+            i = 0;
+        }
+        if(platforms[1].x < player.x && player.x < platforms[1].x + platforms[1].width &&
+        platforms[1].y < player.y && player.y < platforms[1].y + platforms[1].height){
+            i = 1;
+        }
+        if (i > -1){
+            player.jump = false;
+            player.y = platforms[i].y;
+        }
+        // Rendering the canvas, the player and the platforms
+        rendercanvas();
+        renderplayer();
+        renderplat();
+    }
+
+    canvas=document.getElementById("canvas");
+    ctx=canvas.getContext("2d");
+    ctx.canvas.height = 432;
+    ctx.canvas.width = 768;
+    createplat();
+
+    // listeners
+    document.addEventListener("keydown",keydown);
+    document.addEventListener("keyup",keyup);
+    setInterval(loop,15);
+</script>
 <body>
-
-  <h1>Platformer PixArt</h1>
-
-
-  <script>
-    "use strict";
-  </script>
-
-
 </body>
 </html>
