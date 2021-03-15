@@ -1,7 +1,7 @@
 "use strict";
 
-var gravity = 0.4;
-var friction = 0.2;
+var gravity = 0.2;
+var friction = 0.4;
 
 var player = {
     x: 50,
@@ -14,7 +14,7 @@ var player = {
     };
 
 function renderplayer(){
-    ctx.fillRect(0, 0, ctx.canvas.height, ctx.canvas.width);
+    // ctx.fillRect(0, 0, ctx.canvas.height, ctx.canvas.width);
     ctx.fillStyle = "#F08080";
     ctx.fillRect(player.x, player.y, player.width, player.height);
     }
@@ -22,52 +22,63 @@ function renderplayer(){
 function move() {
   if(player.jump == false) {
       player.x_v *= friction;
-  } else {
+  }
+  else {
       // If the player is in the air then apply the effect of gravity
       player.y_v += gravity;
-
   }
+
   player.jump = true;
-  // If the left key is pressed increase the relevant horizontal velocity
+
+  // Déplacements latéraux
   if(keys.left) {
       player.x_v = -2.5;
+      if (colx()== true) {
+        player.x += player.x_v;
+      }
   }
+
   if(keys.right) {
       player.x_v = 2.5;
+      if (colx()== true) {
+        player.x += player.x_v;
+      }
   }
-  // Updating the y and x coordinates of the player
-  player.x += player.x_v;
+
+
 
   if (coly()==true) {
     player.y += player.y_v;
   }
   else {
-    player.y_v=0
+    player.y_v = 0;
   }
 
 }
 
 function coly() {
   for (var i = 0; i < platforms.length; i++) {
-    // if (player.x + player.x_v == platforms[i].x && player.y+player.y_v == platforms[i].y && player.x + player.width + player.x_v == platforms[i].x && player.y+player.height+player.y_v == platforms[i].y){
-    //   console.log("collisions");
-    // }
-    // if (player.x == platforms[i].x) {
-    //   console.log("collisions");
-    // }
-    if (player.y+player.height+player.y_v  > platforms[i].y && player.y+player.height+player.y_v  < platforms[i].y+16) {
-      if (player.x < platforms[i].x+16 && player.x > platforms[i].x) {
-        console.log("là collide !");
+    if (platforms[i].x < player.x+player.width && player.x+player.width < platforms[i].x+16 || platforms[i].x< player.x && player.x < platforms[i].x+16) {
+      if (platforms[i].y < player.y+player.height+player.y_v && player.y+player.height+player.y_v < platforms[i].y+16) {
         return false;
       }
-
-
-      // console.log("collide");
     }
   }
   return true;
 }
 
 function colx() {
+  for (var i = 0; i < platforms.length; i++) {
+    if (platforms[i].y < player.y+player.height-1 && player.y+player.height-1 < platforms[i].y+16
+      || platforms[i].y<= player.y && player.y <= platforms[i].y+16
+      ||platforms[i].y < player.y+(player.height/2)-1 && player.y+(player.height/2)-1 < platforms[i].y+16) {
 
+      if (platforms[i].x < player.x+player.width+player.x_v-1 && player.x+player.width+player.x_v-1 < platforms[i].x+16
+        || platforms[i].x < player.x+player.x_v && player.x+player.x_v < platforms[i].x+16) {
+
+        return false;
+      }
+    }
+  }
+  return true;
 }
