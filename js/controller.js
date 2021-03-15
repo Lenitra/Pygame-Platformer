@@ -33,17 +33,17 @@ function keyup(e) {
   let droite = 39;
   let haut = 38;
 
-  if(e.keyCode == 37) {
+  if(e.keyCode == gauche) {
     keys.left = false;
   }
 
-  if(e.keyCode == 38) {
+  if(e.keyCode == haut) {
     if(player.y_v < -2) {
       player.y_v = -3;
     }
   }
 
-  if(e.keyCode == 39) {
+  if(e.keyCode == droite) {
     keys.right = false;
   }
 

@@ -1,27 +1,34 @@
 "use strict";
 
-var num = 2;
+var num = 5;
 // The platforms
 var platforms = [];
 
 function createplat(){
-  let i = 0;
-    for(i = 0; i < num; i++) {
+  console.log("génération de la map");
+  for (var i = 0; i < map_1.length; i++) {
+    for (var j = 0; j < map_1[i].length; j++) {
+      if (map_1[i][j] != 0){
         platforms.push(
-            {
-            x: 100 * i,
-            y: 200 + (30 * i),
-            width: 110,
-            height: 15
-            }
+          {
+            x: j*16,
+            y: i*16
+          }
         );
+      }
+
     }
+
+
+  }
 }
+
+
 
 
 function renderplat(){
     ctx.fillStyle = "#45597E";
-    ctx.fillRect(platforms[0].x, platforms[0].y, platforms[0].width, platforms[0].height);
-    ctx.fillRect(platforms[1].x, platforms[1].y, platforms[1].width,platforms[1]. height);
-
+    for (var i = 0; i < platforms.length; i++) {
+      ctx.fillRect(platforms[i].x, platforms[i].y, 16, 16);
+    }
 }
