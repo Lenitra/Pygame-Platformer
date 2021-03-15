@@ -16,7 +16,7 @@ Le jeu est une collaboration entre tous les membres du discord Pixel Art, spéci
 <p>Titre: Project PixArt (temporaire)</p>
 <p>Elevator pitch: L'héroïne à 5 minutes pour rejoindre un point fixé pour ne pas mourir. Elle réalisera sa mission à travers différents environnements en apprenant de ses erreurs et en explorant de nouvelles zones.</p>
 <p>Genre: Plateforme Aventure / MetroidVania</p>
-<p>Technologie: Python</p>
+<p>Technologie: Technologies web (JavaScript, HTML, CSS)</p>
 <p>Nombre de joueurs: singleplayer</p>
 <p>Public/pegi: Pegi 3 : Pour les amateurs de jeu indépendants courts avec une vibe retro</p>
 <p>Région: Monde</p>
