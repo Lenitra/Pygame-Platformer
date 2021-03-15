@@ -36,27 +36,13 @@ function move() {
       player.x_v = 2.5;
   }
   // Updating the y and x coordinates of the player
-  if (coly() == true) {
-    player.y += player.y_v;
-  }
-  if (colx() == true){
-
-  }
   player.x += player.x_v;
 
-  // A simple code that checks for collions with the platform
-  let o = -1;
-  for (var i = 0; i < platforms.length; i++) {
-    if(platforms[i].x < player.x && player.x < platforms[i].x + 16 &&
-    platforms[i].y < player.y && player.y < platforms[i].y + 16){
-        o = i;
-    }
+  if (coly()==true) {
+    player.y += player.y_v;
   }
-
-
-  if (o > -1){
-      player.jump = false;
-      player.y = platforms[o].y;
+  else {
+    player.y_v=0
   }
 
 }
@@ -69,8 +55,9 @@ function coly() {
     // if (player.x == platforms[i].x) {
     //   console.log("collisions");
     // }
-    if (player.y+player.height+player.y_v  == platforms[i].y) {
+    if (player.y+player.height+player.y_v  > platforms[i].y && player.y+player.height+player.y_v  < platforms[i].y+16) {
       if (player.x < platforms[i].x+16 && player.x > platforms[i].x) {
+        console.log("là collide !");
         return false;
       }
 

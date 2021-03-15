@@ -29,6 +29,7 @@ function keydown(e) {
 
     // This function is called when the pressed key is released
 function keyup(e) {
+  console.log(e.keyCode);
   let gauche = 37;
   let droite = 39;
   let haut = 38;
